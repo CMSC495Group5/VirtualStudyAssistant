@@ -4,6 +4,8 @@
  */
 package schedule_management;
 import arraylist_handler.*;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 /**
  *
@@ -127,12 +129,26 @@ public class Create_Schedule extends javax.swing.JFrame {
     }//GEN-LAST:event_back_to_Sched_mgmtMouseClicked
 
     private void submit_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseClicked
-        // TODO add your handling code here:
-        String class_infromation = enter_classInformation.getText();
+        // Add the text fromt he text boxes to the arraylists handled in ArrayListHandler
+        String classinformation = enter_classInformation.getText();
         String startdate = enter_classStartDate.getText();
         String enddate = enter_classEndDate.getText();
         
-        ArrayListHandler.addClass(startdate, startdate, enddate);
+        ArrayListHandler.addClass(classinformation, startdate, enddate);
+        // Informs the user that they have entered a duplicate class
+        if(ArrayListHandler.getClassMatched()== true){
+            JDialog dialog = new JDialog(this, "Class Duplicated");
+                dialog.add(new JLabel("Your have entered a duplicated class."));
+                dialog.setSize(250, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+        }
+        
+         // clear the text box when press submit
+        enter_classInformation.setText("");
+        enter_classStartDate.setText("");
+        enter_classEndDate.setText("");
         
     }//GEN-LAST:event_submit_buttonMouseClicked
 

@@ -6,6 +6,9 @@ package schedule_management;
 
 
 
+import arraylist_handler.ArrayListHandler;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import main.vsa_dashboard;
 
 /**
@@ -53,7 +56,12 @@ public class Schedule_Management extends javax.swing.JFrame {
         });
 
         edit_schedule.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        edit_schedule.setText("Edit Shedule");
+        edit_schedule.setText("Edit Schedule");
+        edit_schedule.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edit_scheduleMouseClicked(evt);
+            }
+        });
 
         create_schedule.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         create_schedule.setText("Create Schedule");
@@ -70,6 +78,11 @@ public class Schedule_Management extends javax.swing.JFrame {
 
         delete_schedule.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         delete_schedule.setText("Delete Schedule");
+        delete_schedule.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete_scheduleMouseClicked(evt);
+            }
+        });
 
         display_schedule.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         display_schedule.setText("Display Schedule");
@@ -144,6 +157,25 @@ public class Schedule_Management extends javax.swing.JFrame {
         this.setVisible(false);
         create_schedule.setVisible(true);
     }//GEN-LAST:event_create_scheduleMouseClicked
+
+    private void delete_scheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_scheduleMouseClicked
+        // TODO add your handling code here:
+        ArrayListHandler.deleteSchedule();
+        JDialog dialog = new JDialog(this, "Schedule Deletion Confirmation");
+                dialog.add(new JLabel("Your schedule has been deleted."));
+                dialog.setSize(250, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+        
+    }//GEN-LAST:event_delete_scheduleMouseClicked
+
+    private void edit_scheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_scheduleMouseClicked
+        // TODO add your handling code here:
+        Edit_Schedule create_schedule = new Edit_Schedule ();
+        this.setVisible(false);
+        create_schedule.setVisible(true);
+    }//GEN-LAST:event_edit_scheduleMouseClicked
 
     /**
      * @param args the command line arguments
