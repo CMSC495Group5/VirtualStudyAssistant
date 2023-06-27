@@ -27,7 +27,6 @@ public class vsa_login extends javax.swing.JFrame {
     Color panDefault,panEnter,panClick;
     public vsa_login() {
         initComponents();
-        
         panDefault=new Color(51,102,255);
         panClick=new Color(35,85,235);
         panEnter=new Color(35,85,235);
@@ -201,7 +200,7 @@ public class vsa_login extends javax.swing.JFrame {
     }//GEN-LAST:event_login_buttonMouseReleased
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        vsa_dashboard dash = new vsa_dashboard();
+        vsa_dashboard dash = new vsa_dashboard(name_box.getText());
         this.setVisible(false);
         dash.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked

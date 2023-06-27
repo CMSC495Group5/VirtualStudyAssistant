@@ -3,7 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package schedule_management;
-import arraylist_handler.*;
+
+
+import arraylist_handler.ArrayListHandler;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
@@ -33,11 +41,11 @@ public class Create_Schedule extends javax.swing.JFrame {
         enterEndDate_label = new javax.swing.JLabel();
         enterClassInfor_label = new javax.swing.JLabel();
         enterStartDate_label = new javax.swing.JLabel();
-        enter_classStartDate = new javax.swing.JTextField();
         enter_classInformation = new javax.swing.JTextField();
-        enter_classEndDate = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         back_to_Sched_mgmt = new javax.swing.JButton();
+        endDateChooser = new com.toedter.calendar.JDateChooser();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,11 +59,7 @@ public class Create_Schedule extends javax.swing.JFrame {
 
         enterStartDate_label.setText("Enter Start Date");
 
-        enter_classStartDate.setToolTipText("Enter Class Start Date");
-
         enter_classInformation.setToolTipText("Enter Class Information");
-
-        enter_classEndDate.setToolTipText("Enter Class End Date");
 
         submit_button.setText("Submit");
         submit_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,13 +87,14 @@ public class Create_Schedule extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enter_classInformation))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(enterEndDate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(enterEndDate_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(enterStartDate_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enter_classEndDate))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(enterStartDate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enter_classStartDate)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(endDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(13, 13, 13)))
                 .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(back_to_Sched_mgmt)
@@ -105,13 +110,13 @@ public class Create_Schedule extends javax.swing.JFrame {
                     .addComponent(enterClassInfor_label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enter_classInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enterStartDate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enter_classStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(enterEndDate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enter_classEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back_to_Sched_mgmt)
@@ -130,28 +135,54 @@ public class Create_Schedule extends javax.swing.JFrame {
 
     private void submit_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseClicked
         // Add the text fromt he text boxes to the arraylists handled in ArrayListHandler
-        String classinformation = enter_classInformation.getText();
-        String startdate = enter_classStartDate.getText();
-        String enddate = enter_classEndDate.getText();
         
+        //start date
+        Date startDate = startDateChooser.getDate();
+        SimpleDateFormat start_dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String startText = start_dateFormat.format( startDate);
+        
+        
+        
+        // end date 
+        Date endDate = endDateChooser.getDate();
+        SimpleDateFormat end_dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String endText = end_dateFormat.format(endDate);
+        
+        
+        String classinformation = enter_classInformation.getText();
+        String startdate = startText;
+        String enddate = endText;
+        
+        
+   
         ArrayListHandler.addClass(classinformation, startdate, enddate);
-        // Informs the user that they have entered a duplicate class
-        if(ArrayListHandler.getClassMatched()== true){
-            JDialog dialog = new JDialog(this, "Class Duplicated");
-                dialog.add(new JLabel("Your have entered a duplicated class."));
+         JDialog dialog = new JDialog(this, "Class entered");
+                dialog.add(new JLabel("Your class has been entered into your schedule."));
                 dialog.setSize(250, 100);
                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 dialog.setVisible(true);
                 dialog.setResizable(false);
+        // Informs the user that they have entered a duplicate class
+        if(ArrayListHandler.getClassMatched()== true){
+            JDialog dialog1 = new JDialog(this, "Class Duplicated");
+                dialog1.add(new JLabel("Your have entered a duplicated class."));
+                dialog1.setSize(250, 100);
+                dialog1.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog1.setVisible(true);
+                dialog1.setResizable(false);
         }
         
          // clear the text box when press submit
+         
         enter_classInformation.setText("");
-        enter_classStartDate.setText("");
+        /*
+         enter_classStartDate.setText("");
         enter_classEndDate.setText("");
+        */
         
     }//GEN-LAST:event_submit_buttonMouseClicked
 
+    
     /**
      * @param args the command line arguments
      */
@@ -189,12 +220,12 @@ public class Create_Schedule extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_to_Sched_mgmt;
+    private com.toedter.calendar.JDateChooser endDateChooser;
     private javax.swing.JLabel enterClassInfor_label;
     private javax.swing.JLabel enterEndDate_label;
     private javax.swing.JLabel enterStartDate_label;
-    private javax.swing.JTextField enter_classEndDate;
     private javax.swing.JTextField enter_classInformation;
-    private javax.swing.JTextField enter_classStartDate;
+    private com.toedter.calendar.JDateChooser startDateChooser;
     private javax.swing.JButton submit_button;
     private javax.swing.JLabel title_label;
     // End of variables declaration//GEN-END:variables

@@ -84,7 +84,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Back To Dash Board"/>
+        <Property name="text" type="java.lang.String" value="Back To Dashboard"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="back_to_dashbaordMouseClicked"/>
@@ -132,6 +132,7 @@
         <Property name="text" type="java.lang.String" value="Display Schedule"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="display_scheduleMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="display_scheduleActionPerformed"/>
       </Events>
     </Component>

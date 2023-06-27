@@ -48,7 +48,7 @@ public class Schedule_Management extends javax.swing.JFrame {
         schedule_managementTitle.setText("Schedule Management");
 
         back_to_dashbaord.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        back_to_dashbaord.setText("Back To Dash Board");
+        back_to_dashbaord.setText("Back To Dashboard");
         back_to_dashbaord.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 back_to_dashbaordMouseClicked(evt);
@@ -86,6 +86,11 @@ public class Schedule_Management extends javax.swing.JFrame {
 
         display_schedule.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         display_schedule.setText("Display Schedule");
+        display_schedule.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                display_scheduleMouseClicked(evt);
+            }
+        });
         display_schedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 display_scheduleActionPerformed(evt);
@@ -176,6 +181,14 @@ public class Schedule_Management extends javax.swing.JFrame {
         this.setVisible(false);
         create_schedule.setVisible(true);
     }//GEN-LAST:event_edit_scheduleMouseClicked
+
+    private void display_scheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_display_scheduleMouseClicked
+        // TODO add your handling code here:
+        Display_Schedule display_schedule = new Display_Schedule ();
+        this.setVisible(false);
+        display_schedule.setVisible(true);
+        
+    }//GEN-LAST:event_display_scheduleMouseClicked
 
     /**
      * @param args the command line arguments

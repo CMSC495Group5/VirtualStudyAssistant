@@ -16,6 +16,9 @@ import schedule_management.Schedule_Management;
 public class vsa_dashboard extends javax.swing.JFrame {
 
     Color defaultColor,clickColor;
+    private String user_name;
+
+   
     public vsa_dashboard() {
         initComponents();
         defaultColor = new Color(23,20,20);
@@ -27,7 +30,25 @@ public class vsa_dashboard extends javax.swing.JFrame {
         resource_menu.setBackground(defaultColor);
         prog_menu.setBackground(defaultColor);
     }
+    
 
+        public vsa_dashboard(String user_name) {
+        this.user_name = user_name; 
+        initComponents();
+        defaultColor = new Color(23,20,20);
+        clickColor = new Color(51,102,255);
+        
+        dash_menu.setBackground(defaultColor);
+        sched_menu.setBackground(defaultColor);
+        task_menu.setBackground(defaultColor);
+        resource_menu.setBackground(defaultColor);
+        prog_menu.setBackground(defaultColor);
+        
+        
+    }
+        public String getUser_name() {
+        return this.user_name;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,8 +265,8 @@ public class vsa_dashboard extends javax.swing.JFrame {
         dash_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         welcome_label.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        welcome_label.setText("Welcome, <insert username>");
-        dash_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        welcome_label.setText("Welcome " + this.getUser_name());
+        dash_panel.add(welcome_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
 
         getContentPane().add(dash_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 600, 500));
 

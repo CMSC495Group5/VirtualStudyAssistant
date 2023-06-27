@@ -32,14 +32,16 @@
                       <Component id="enter_classInformation" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="enterEndDate_label" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="enterEndDate_label" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="enterStartDate_label" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="enter_classEndDate" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="enterStartDate_label" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="enter_classStartDate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="startDateChooser" max="32767" attributes="0"/>
+                          <Component id="endDateChooser" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -61,14 +63,14 @@
                   <Component id="enter_classInformation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enterStartDate_label" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="enter_classStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="enterStartDate_label" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="startDateChooser" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enterEndDate_label" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="enter_classEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="enterEndDate_label" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="endDateChooser" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="87" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -104,19 +106,9 @@
         <Property name="text" type="java.lang.String" value="Enter Start Date"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="enter_classStartDate">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Enter Class Start Date"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="enter_classInformation">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Enter Class Information"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="enter_classEndDate">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Enter Class End Date"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="submit_button">
@@ -134,6 +126,10 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="back_to_Sched_mgmtMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="endDateChooser">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="startDateChooser">
     </Component>
   </SubComponents>
 </Form>

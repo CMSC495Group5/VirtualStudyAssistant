@@ -4,6 +4,13 @@
  */
 package schedule_management;
 
+import arraylist_handler.ArrayListHandler;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
+
 /**
  *
  * @author jdev1
@@ -13,16 +20,22 @@ public class Edit_Course_Information extends javax.swing.JFrame {
     /**
      * Creates new form Edit_Course_Information
      */
-    private String  classTextField;
+    private String classTextField;
+
+ 
     public Edit_Course_Information() {
         initComponents();
     }
     
-     public Edit_Course_Information(String classTextField) {
-        initComponents();
+    public Edit_Course_Information(String classTextField) {
         this.classTextField = classTextField;
+        initComponents();
     }
     
+     public String getClassTextField() {
+        return classTextField;
+    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,13 +48,13 @@ public class Edit_Course_Information extends javax.swing.JFrame {
 
         title_label = new javax.swing.JLabel();
         enterClassInfo_label = new javax.swing.JLabel();
-        enterClassStartDate_textfield = new javax.swing.JTextField();
         enterClassStartDate_label = new javax.swing.JLabel();
-        enterEndClassDate_textfield = new javax.swing.JTextField();
         enterEndDate_label = new javax.swing.JLabel();
         javax.swing.JTextField enterClassInfor_textfield = new javax.swing.JTextField();
         submit_button = new javax.swing.JButton();
         backToEditSchedule_button = new javax.swing.JButton();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
+        endDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,15 +64,15 @@ public class Edit_Course_Information extends javax.swing.JFrame {
 
         enterClassInfo_label.setText("Class Information");
 
-        enterClassStartDate_textfield.setToolTipText("Enter Class Start Date");
-
         enterClassStartDate_label.setText("Enter Class Start Date");
-
-        enterEndClassDate_textfield.setToolTipText("Enter Class End Date");
 
         enterEndDate_label.setText("Enter Class End Date");
 
+        enterClassInfor_textfield.setText(this.getClassTextField());
         enterClassInfor_textfield.setToolTipText("");
+        enterClassInfor_textfield.setEditable(false);
+
+        enterClassInfor_textfield.setText(this.getClassTextField());
 
         submit_button.setText("Submit");
         submit_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,29 +89,26 @@ public class Edit_Course_Information extends javax.swing.JFrame {
             }
         });
 
-        //enterClassInfor_textfield.setText(this.classTextField);
-        //enterClassInfor_textfield.isEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterClassStartDate_textfield)
-                    .addComponent(enterClassInfo_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(enterEndClassDate_textfield)
-                    .addComponent(enterEndDate_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(title_label, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
-                    .addComponent(enterClassInfor_textfield)
-                    .addComponent(enterClassStartDate_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(backToEditSchedule_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submit_button))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(enterClassInfo_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(enterEndDate_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(enterClassInfor_textfield, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterClassStartDate_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(title_label, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                    .addComponent(endDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,12 +121,12 @@ public class Edit_Course_Information extends javax.swing.JFrame {
                 .addComponent(enterClassInfor_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(enterClassStartDate_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enterClassStartDate_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(enterEndDate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterEndClassDate_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submit_button)
@@ -128,7 +138,37 @@ public class Edit_Course_Information extends javax.swing.JFrame {
 
     private void submit_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseClicked
         // TODO add your handling code here:
+         
+        //start date
+        Date startDate = startDateChooser.getDate();
+        SimpleDateFormat start_dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String startText = start_dateFormat.format( startDate);
         
+        
+        
+        // end date 
+        Date endDate = endDateChooser.getDate();
+        SimpleDateFormat end_dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String endText = end_dateFormat.format(endDate);
+        
+        
+        
+        String startdate = startText;
+        String enddate = endText; 
+        
+        
+         int element = ArrayListHandler.findElement(this.getClassTextField());
+         ArrayListHandler.editEndAndStartDate(element,
+                                                startdate,   
+                                                enddate);
+          JDialog dialog = new JDialog(this, "Class Edited Notice");
+                dialog.add(new JLabel("Your edits have been made."));
+                dialog.setSize(250, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+        //enterClassStartDate_textfield.setText("");
+        //enteClassEndDate_textfield.setText("");
     }//GEN-LAST:event_submit_buttonMouseClicked
 
     private void backToEditSchedule_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToEditSchedule_buttonMouseClicked
@@ -175,11 +215,11 @@ public class Edit_Course_Information extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToEditSchedule_button;
+    private com.toedter.calendar.JDateChooser endDateChooser;
     private javax.swing.JLabel enterClassInfo_label;
     private javax.swing.JLabel enterClassStartDate_label;
-    private javax.swing.JTextField enterClassStartDate_textfield;
-    private javax.swing.JTextField enterEndClassDate_textfield;
     private javax.swing.JLabel enterEndDate_label;
+    private com.toedter.calendar.JDateChooser startDateChooser;
     private javax.swing.JButton submit_button;
     private javax.swing.JLabel title_label;
     // End of variables declaration//GEN-END:variables
