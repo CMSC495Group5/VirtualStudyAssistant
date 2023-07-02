@@ -4,6 +4,9 @@
  */
 package study_resources;
 
+import arraylist_handler.ArrayListHandler;
+
+
 /**
  *
  * @author jdev1
@@ -28,8 +31,8 @@ public class View_Resources extends javax.swing.JFrame {
 
         tiltle_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        resource_table = new javax.swing.JTable();
+        back_to_ResourceMngmt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,23 +40,18 @@ public class View_Resources extends javax.swing.JFrame {
         tiltle_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tiltle_label.setText("Study Resources");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+        resource_table.setModel(new javax.swing.table.DefaultTableModel(
+            ArrayListHandler.table_resource_Display(),
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Resource List"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(resource_table);
 
-        jButton1.setText("Back to Resource Management");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        back_to_ResourceMngmt.setText("Back to Resource Management");
+        back_to_ResourceMngmt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                back_to_ResourceMngmtMouseClicked(evt);
             }
         });
 
@@ -67,7 +65,7 @@ public class View_Resources extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(back_to_ResourceMngmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -77,19 +75,19 @@ public class View_Resources extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(back_to_ResourceMngmt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void back_to_ResourceMngmtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_to_ResourceMngmtMouseClicked
 
         // TODO add your handling code here:
         Resource_Management resource_management = new Resource_Management();
         this.setVisible(false);
         resource_management.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_back_to_ResourceMngmtMouseClicked
 
     /**
      * @param args the command line arguments
@@ -127,9 +125,9 @@ public class View_Resources extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton back_to_ResourceMngmt;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable resource_table;
     private javax.swing.JLabel tiltle_label;
     // End of variables declaration//GEN-END:variables
 }

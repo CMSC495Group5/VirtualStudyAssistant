@@ -36,7 +36,8 @@ public class ArrayListHandler extends JFrame {
     private static boolean scheduleEmpty = false;
     private static int count;
     //---end of Schedule management attributes---/
-    //--Task management
+    
+    //---Task management---/
     private static final ArrayList<String> task_name = new ArrayList<>();
     private static final ArrayList<String> task_start_date = new ArrayList<>();
     private static final ArrayList<String> task_end_date   = new ArrayList<>();
@@ -54,6 +55,8 @@ public class ArrayListHandler extends JFrame {
     public static ArrayList<String> getTaskEnd_date() {
         return task_end_date;
     }
+   
+    // May need this for setting the task complet
     private static boolean taskMatched = false;
 
     public static boolean isTaskComplete() {
@@ -66,15 +69,25 @@ public class ArrayListHandler extends JFrame {
     private static boolean taskComplete = false;
     private static boolean taskEmpty = false;
     private static int task_count;
-  
-    
    
-    //---End of task management---/
+    //---End of task management attributes---/
+    //---start of resource management attributes---//
+    private static final ArrayList<String> resource_name = new ArrayList<>();
+    
+    public static ArrayList<String> getResource_name() {
+        return resource_name;
+    }
+
+    private static boolean resourceMatched = false;
+    private static boolean resourceEmpty = false;
+    private static int resource_count;
+    
+    //---end of resource management---//
 
     private ArrayListHandler() {
         // constructor code
     }
-
+    //---Schedule management methods---//
     public static void addClass(String classname, String startdate, String enddate) {
        
         if(class_name.isEmpty()  && start_date.isEmpty() && end_date.isEmpty()){
@@ -140,7 +153,7 @@ public class ArrayListHandler extends JFrame {
         
         
     }
-    // find the indez where the String element is located and returns the number
+    // find the index where the String element is located and returns the number
     public static int findElement(String element ){
         count = 0;
         classMatched = false;
@@ -187,6 +200,7 @@ public class ArrayListHandler extends JFrame {
     }
       
       //---end of schedule management---//
+      
       //---Start Task Management---//
           public static void addTask(String taskname, String startdate, String enddate) {
        
@@ -242,7 +256,6 @@ public class ArrayListHandler extends JFrame {
         
         if(task_name.isEmpty()  && task_start_date.isEmpty() && end_date.isEmpty()){
                     taskEmpty = true;
-           
         }
         // test for a duplicate class
         else{
@@ -251,12 +264,9 @@ public class ArrayListHandler extends JFrame {
                     taskMatched = true;
                 }
             }
-         
         }
-        
-        
     }
-    // find the indez where the String element is located and returns the number
+    // find the index where the String element is located and returns the number
     public static int findTaskElement(String element ){
         task_count = 0;
         taskMatched = false;
@@ -269,8 +279,7 @@ public class ArrayListHandler extends JFrame {
         }
         if(taskMatched == false){
             return -1;
-        }
-        
+        }        
         return task_count;
     }
     
@@ -283,13 +292,13 @@ public class ArrayListHandler extends JFrame {
          testArrayList(task_start_date);
          testArrayList(task_end_date);
     }
-    
-    
+
     public static void editTaskComplete(int element){
         task_complete.set(element, "Yes");
     }
     
     public static Object[][] tableTaskDisplay(){
+        
         Object[][] data = new Object[task_name.size()][4]; // 4 is the number of columns
 
         for (int i = 0; i < task_name.size(); i++) {
@@ -300,7 +309,6 @@ public class ArrayListHandler extends JFrame {
             }
     return data;
     }
-    
         public static boolean getTaskMatched(){
         return taskMatched;
     }
@@ -308,12 +316,64 @@ public class ArrayListHandler extends JFrame {
         return taskEmpty;
     }
       //---End of Tasks---//
-    
-      
-      
-      
+      //---Start of resource management---//
+    public static void addResource(String resourcename) {
+       
+        if(resource_name.isEmpty()){
+            resource_name.add(resourcename);
+            // testing the arrays
+            testArrayList(resource_name);
+        }
+        // test for a duplicate class
+        else{
+            for(String element: resource_name){
+                if(element.matches(resourcename)){
+                    resourceMatched = true;
+                }
+            }
+            if(resourceMatched == false){
+                resource_name.add(resourcename);
+                // testing the arrays
+                testArrayList(resource_name);  
+            }
+        }
+    }
+    // find the index where the String element is located and returns the number
+        public static void searchResource(String searchTask){
+        
+        if(resource_name.isEmpty()){
+                    resourceEmpty = true;
+        }
+        // test for a duplicate class
+        else{
+        for(String element: resource_name){
+                if(element.matches(searchTask)){
+                    resourceMatched = true;
+                    break;
+                }
+            }
+        }
+        
+    }
+ 
+    public static Object[][] table_resource_Display(){
+        Object[][] data = new Object[resource_name.size()][1]; // 3 is the number of columns
+
+        for (int i = 0; i < resource_name.size(); i++) {
+              data[i][0] = resource_name.get(i);
+            }
+    return data;
+    }
+        public static boolean getResourceMatched(){
+            return resourceMatched;
+    }
+      public static boolean getResourceEmpty(){
+        return resourceEmpty;
+    }
+      //---End of resource management---//
+           
     public static void testArrayList(ArrayList<String> test){
-       if(!class_name.isEmpty()  && !start_date.isEmpty() && !end_date.isEmpty()){
+       if(!test.isEmpty()){
         for(String element: test){
             System.out.println(element);
         }
@@ -322,9 +382,4 @@ public class ArrayListHandler extends JFrame {
            System.out.println("The size of arraylist : " + test.size());
        }
     }
-   // getmethods
-
-        
-   
 }
-

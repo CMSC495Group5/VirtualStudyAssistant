@@ -33,7 +33,7 @@ public class Resource_Management extends javax.swing.JFrame {
         add_study_resource = new javax.swing.JButton();
         search_study_resource = new javax.swing.JButton();
         view_study_resource = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        back_to_dashboard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +54,11 @@ public class Resource_Management extends javax.swing.JFrame {
                 search_study_resourceMouseClicked(evt);
             }
         });
+        search_study_resource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_study_resourceActionPerformed(evt);
+            }
+        });
 
         view_study_resource.setText("View Study Resources");
         view_study_resource.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,10 +67,10 @@ public class Resource_Management extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Back to DashBoard");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        back_to_dashboard.setText("Back to DashBoard");
+        back_to_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                back_to_dashboardMouseClicked(evt);
             }
         });
 
@@ -75,7 +80,7 @@ public class Resource_Management extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tiltle_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back_to_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
@@ -95,8 +100,8 @@ public class Resource_Management extends javax.swing.JFrame {
                 .addComponent(search_study_resource)
                 .addGap(18, 18, 18)
                 .addComponent(view_study_resource)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(back_to_dashboard))
         );
 
         pack();
@@ -123,12 +128,16 @@ public class Resource_Management extends javax.swing.JFrame {
         study_resource.setVisible(true);
     }//GEN-LAST:event_view_study_resourceMouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void back_to_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_to_dashboardMouseClicked
         // TODO add your handling code here:
         vsa_dashboard dash = new vsa_dashboard();
         this.setVisible(false);
         dash.setVisible(true);
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_back_to_dashboardMouseClicked
+
+    private void search_study_resourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_study_resourceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_study_resourceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +176,7 @@ public class Resource_Management extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_study_resource;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton back_to_dashboard;
     private javax.swing.JButton search_study_resource;
     private javax.swing.JLabel tiltle_label;
     private javax.swing.JButton view_study_resource;

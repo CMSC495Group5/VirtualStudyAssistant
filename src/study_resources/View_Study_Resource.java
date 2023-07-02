@@ -4,6 +4,11 @@
  */
 package study_resources;
 
+import arraylist_handler.ArrayListHandler;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import study_tasks.Edit_Task_Information;
+
 /**
  *
  * @author jdev1
@@ -26,65 +31,107 @@ public class View_Study_Resource extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        title_label = new javax.swing.JLabel();
+        enter_resource_label = new javax.swing.JLabel();
+        resource_search_textfield = new javax.swing.JTextField();
+        back_to_resource_management = new javax.swing.JButton();
+        search_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Search Resource");
+        title_label.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        title_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title_label.setText("Search Resource");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Enter Resource Name");
+        enter_resource_label.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        enter_resource_label.setText("Enter Resource Name");
 
-        jButton1.setText("Back to Resource Management");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        back_to_resource_management.setText("Back to Resource Management");
+        back_to_resource_management.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                back_to_resource_managementMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Search");
+        search_button.setText("Search");
+        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                search_buttonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(title_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(enter_resource_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(resource_search_textfield, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(back_to_resource_management)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addComponent(search_button))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(title_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(enter_resource_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(resource_search_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(back_to_resource_management)
+                    .addComponent(search_button)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void back_to_resource_managementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_to_resource_managementMouseClicked
         // TODO add your handling code here:
         Resource_Management resource_management = new Resource_Management();
         this.setVisible(false);
         resource_management.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_back_to_resource_managementMouseClicked
+
+    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
+        // TODO add your handling code here:
+        ArrayListHandler.searchResource(resource_search_textfield.getText());
+       
+        if(ArrayListHandler.getResourceMatched() == true){
+             JDialog dialog = new JDialog(this, "Resource View");
+                dialog.add(new JLabel("Resource Found: " + resource_search_textfield.getText()));
+                dialog.setSize(400, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+            
+        }
+        else if(ArrayListHandler.getResourceMatched() == false){
+             JDialog dialog = new JDialog(this, "Resource not in Task Management");
+                dialog.add(new JLabel("Your resource is not in resource management."));
+                dialog.setSize(400, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+            
+        }
+       
+        else if ( ArrayListHandler.getResourceEmpty() == true){
+            JDialog dialog = new JDialog(this, "Resource Management is empty");
+                dialog.add(new JLabel("The Resource list is empty."));
+                dialog.setSize(400, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+            
+        }
+        
+     
+        
+    }//GEN-LAST:event_search_buttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,10 +169,10 @@ public class View_Study_Resource extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton back_to_resource_management;
+    private javax.swing.JLabel enter_resource_label;
+    private javax.swing.JTextField resource_search_textfield;
+    private javax.swing.JButton search_button;
+    private javax.swing.JLabel title_label;
     // End of variables declaration//GEN-END:variables
 }

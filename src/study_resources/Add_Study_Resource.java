@@ -4,6 +4,10 @@
  */
 package study_resources;
 
+import arraylist_handler.ArrayListHandler;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
 /**
  *
  * @author jdev1
@@ -41,6 +45,11 @@ public class Add_Study_Resource extends javax.swing.JFrame {
         enter_resource_name_label.setText("Enter Resource Name");
 
         submit_button.setText("Submit");
+        submit_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submit_buttonMouseClicked(evt);
+            }
+        });
 
         back_to_resource_management_button.setText("Back to Resource Mangement");
         back_to_resource_management_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,6 +95,35 @@ public class Add_Study_Resource extends javax.swing.JFrame {
         this.setVisible(false);
         resource_management.setVisible(true);
     }//GEN-LAST:event_back_to_resource_management_buttonMouseClicked
+
+    private void submit_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_buttonMouseClicked
+        // TODO add your handling code here:
+        
+           
+        String resource_information = enter_resource_textfield.getText();
+      
+        
+        ArrayListHandler.addResource(resource_information);
+        
+         JDialog dialog = new JDialog(this, "Resource entered");
+                dialog.add(new JLabel("Your resource has been entered into your task management:" + resource_information ));
+                dialog.setSize(400, 100);
+                dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog.setVisible(true);
+                dialog.setResizable(false);
+        // Informs the user that they have entered a duplicate class
+        
+        if(ArrayListHandler.getResourceMatched() == true){
+            JDialog dialog1 = new JDialog(this, "Resource Duplicated");
+                dialog1.add(new JLabel("Your have entered a duplicated resoource."));
+                dialog1.setSize(250, 100);
+                dialog1.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                dialog1.setVisible(true);
+                dialog1.setResizable(false);
+        }
+        
+             
+    }//GEN-LAST:event_submit_buttonMouseClicked
 
     /**
      * @param args the command line arguments
